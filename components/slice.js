@@ -3,17 +3,14 @@ Vue.component('slice',{
     template:
     `
         <div class="slice-box" :style="{ transform: 'rotate('+ turn+'deg)'}">
-            <span class="slice" v-bind:style="{background-color: color}">
+            <span class="slice" v-bind:style="{ backgroundColor: color}">
                 <b>{{label}}</b>
             </span>
         </div>
     `,
-
-    data() {
-        return {
-            label:'Label',
-            color:'',
-            turn:'0'
-        }
+    props:{
+        label: String,
+        color: String,
+        turn: String
     },
 });

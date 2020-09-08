@@ -1,5 +1,5 @@
 const app = new Vue({
-    el:'#app',
+    el:'#mainbox',
     data:{
         slices:[{label:'', color:'', turn:''}]
     },

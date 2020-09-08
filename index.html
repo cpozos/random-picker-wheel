@@ -4,19 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="components/slice.css">
     
+    
 </head>
 <body>
+    <div>
+        <input type="text">
+        <button>Agregar etiqueta</button>
+    </div>
+
+
     <div id="mainbox" class="mainbox">
         <div id="circle" class="circle">
+            <slice
+                v-bind:label="'Etiqueta 2'"
+                v-bind:turn="'0'"
+                v-bind:color="'yellow'"></slice>
 
-            <div class="slice-box">
+
+<!--
+<div class="slice-box">
                 <span class="slice" style="background-color: yellow;">
                     <b>Etiqueta 1</b>
                 </span>
             </div>
+-->
+            
             
             <div class="slice-box" style="transform: rotate(45deg);">
                 <span class="slice" style="background-color: green;">
