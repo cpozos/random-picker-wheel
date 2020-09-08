@@ -1,0 +1,94 @@
+.expansion-panel::before,
+.expansion-panel::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*Section used for centering process*/
+.expansion-panel>section{
+    width: 100%;
+    height: 30vh;
+    background-color: #3c4052;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.exp-panel-container{
+    width: 100%;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.exp-panel-item{
+    background-color: #283042;
+    border-radius: .4rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    box-shadow: .5rem 2px .5rem rgba(0, 0, 0, .1);
+}
+
+.exp-panel-item-header{
+    font-size: 1.6rem;
+    color: rgba(255, 255, 255, 8);
+    text-decoration: none;
+    background-color: #283042;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.exp-panel-item-header i{
+    color: #e7d5ff;
+    padding: 0.5rem;
+}
+
+.exp-panel-item-header ion-icon[name="caret-up-outline"]{
+    display: none;
+}
+
+.exp-panel-item-body{
+    max-height: 0;
+    overflow: hidden;
+    position: relative;
+    background-color: #212838;
+    transition: max-height 650ms;
+}
+
+.exp-panel-item-body::before{
+    content: "";
+    position: absolute;
+    width: .6rem;
+    height: 90%;
+    background-color: #8fc460;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.exp-panel-item-body>p{
+    color: #fff;
+    padding: 5%;
+}
+
+/*Clicks*/
+.exp-panel-item:target .exp-panel-item-body{
+    max-height: 10rem;
+}
+
+.exp-panel-item:target .exp-panel-item-header ion-icon[name="caret-down-outline"]{
+    display: none;
+}
+
+.exp-panel-item:target .exp-panel-item-header ion-icon[name="caret-up-outline"]{
+    display: n;
+}
+
+
+
+
+
