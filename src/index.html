@@ -25,15 +25,15 @@
             <expansion-panel-section label="Tabla de elementos">
                 <div>
                     <input type="text" v-model:label="newSlice.label">
-                    <button v-on:click="addSlice">Agregar etiqueta</button>
-                    <button v-show="slices.length > 0" v-on:click="deleteSlices">Borrar todas</button>
+                    <button class="btn-add" v-on:click="addSlice">Agregar etiqueta</button>
+                    <button class="btn-delete" v-show="slices.length > 0" v-on:click="deleteSlices">Borrar todas</button>
                 </div>
 
                 <div style="overflow-y: auto; max-height: 8rem;">
-                    <ul>
-                        <li v-for="(slice, index) in slices">
+                    <ul class="items">
+                        <li class="item-deletable" v-for="(slice, index) in slices">
                             <label>{{slice.label}}</label>
-                            <button v-on:click="deleteSlice(index)">X</button>
+                            <button class="btn-delete" v-on:click="deleteSlice(index)">X</button>
                         </li>
                     </ul>
                 </div>

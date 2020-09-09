@@ -94,3 +94,59 @@ body{
     }
 }
 
+.items{
+    margin:5px 0;
+    padding:0;
+}
+
+.item-deletable{
+    margin:0;
+    padding:0;
+    padding-bottom: 2px;
+    list-style-type: none;
+    border-bottom: 1px solid rgba(100, 100, 100, 0.3);
+}
+
+.item-deletable label{
+    display: block;
+    float: left;
+    margin:0;
+    padding:0;
+    border: 0px;
+    width: 83%;
+
+    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.item-deletable button{
+    margin:0 1% 0 0;
+    padding:0 0 0 0;
+    width: 15%;
+    height: 100%;
+}
+
+.btn-delete{
+    border: 2px solid #d43f3a;
+    border-radius: 5%;
+    text-align: center;
+    color: #FFF;
+    background-color: #d9534f;
+}
+
+.btn-delete:hover{
+    background-color: rgb(218, 40, 40);
+}
+
+.btn-add{
+    border: 2px solid #d43f3a;
+    border-radius: 5%;
+    text-align: center;
+    color: #FFF;
+    background-color: #d9534f;
+}
+
+.btn-add:hover{
+    background-color: rgb(218, 40, 40);
+}
