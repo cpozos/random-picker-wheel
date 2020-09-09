@@ -2,7 +2,7 @@ const app = new Vue({
     el:'#app',
     data:{
         slices:[],
-        newSlice: { label:'', color:'', turn:''}
+        newSlice: { label:'', color:''}
     },
 
     methods: {
@@ -21,8 +21,37 @@ const app = new Vue({
         },
 
         addSlice: function(){
+
+            // Angle
+            var angle = this.getAngle();
+
+            if(this.slices){
+
+                for (let i = 0; i < this.slices.length; i++) {
+                    const slice = this.slices[i];
+                    slice.angle = angle;
+                    slice.rotation = angle * (i+1);
+                }
+            }
+            
+            this.newSlice.angle = angle;
+            this.newSlice.rotation = angle * (this.slices.length + 1);
+
+            // Add new slice
             this.slices.push(this.newSlice);
+            
+            // Clear slice
             this.newSlice = {}
+        },
+
+        deleteSlices: function(){
+            this.slices = [];
+        },
+
+        getAngle: function(){
+            var numberSlices = this.slices.length + 1;
+            var angle = 2 * Math.PI / numberSlices;
+            return angle;
         }
     },
 });

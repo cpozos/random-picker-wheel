@@ -10,6 +10,11 @@ body{
     background-size: cover;
 }
 
+#app{
+    position: absolute;
+    top: 10%;
+}
+
 .mainbox{
     position: relative;
     width: 500px;

@@ -4,178 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-    <!--Icons-->
-    <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule="" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>
+    <!-- Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="components/slice.css">
-    <link rel="stylesheet" href="components/exp-panel.css">
 
-    
+    <!--Components-->
+    <link rel="stylesheet" href="components/slice.css">
+    <script src="components/slice.js"></script>
+
+    <link rel="stylesheet" href="C:/Proyectos/VueJs/v-components/expansion-panel/expansion-panel-section.css">
+    <script src="C:/Proyectos/VueJs/v-components/expansion-panel/expansion-panel-section.js"></script>
 </head>
 <body>
     <div id="app">
+
+        <div class="div-expansion-panel-container">
+            <expansion-panel-section label="Tabla de elementos">
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Etiqueta</th>
+                                <th>Color</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="slice in slices">
+                                <td>{{slice.label}}</td>
+                                <td v-bind:style="{backgroundColor: slice.color}">{{slice.color}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button v-show="slices.length > 0" v-on:click="deleteSlices">Borrar todas</button>
+            </expansion-panel-section>
+        </div>
+
+        <hr/>
+
         <div>
             <input type="text" v-model:label="newSlice.label">
             <input type="text" v-model:color="newSlice.color">
             <button v-on:click="addSlice">Agregar etiqueta</button>
         </div>
 
-        <div class="accordion">
-            <div>
-                <input type="checkbox" id="section1" class="accordion__input">
-                <label for="section1" class="accordion__label">
-                    Section 1
-                    <ion-icon name="caret-down-outline"></ion-icon>
-                    <ion-icon name="caret-up-outline"></ion-icon>
-                </label>
-                <div class="accordion__content">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit minus praesentium exercitationem odio! Nihil nostrum nam vel ea quos aut, tempore quaerat voluptates culpa vitae totam, provident nulla optio autem?
-                    </p>
-                </div>
-            </div>
-
-            <div>
-                <input type="checkbox" id="section2" class="accordion__input">
-                <label for="section2" class="accordion__label">
-                    Section 2
-                    <ion-icon name="caret-down-outline"></ion-icon>
-                    <ion-icon name="caret-up-outline"></ion-icon>
-                </label>
-                <div class="accordion__content">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit minus praesentium exercitationem odio! Nihil nostrum nam vel ea quos aut, tempore quaerat voluptates culpa vitae totam, provident nulla optio autem?
-                    </p>
-                </div>
-            </div>
-
-            <div>
-                <input type="checkbox" id="section3" class="accordion__input">
-                <label for="section3" class="accordion__label">
-                    Section 2
-                    <ion-icon name="caret-down-outline"></ion-icon>
-                    <ion-icon name="caret-up-outline"></ion-icon>
-                </label>
-                <div class="accordion__content">
-                    <div class="table-container">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Etiqueta</th>
-                                    <th>Color</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="slice in slices">
-                                    <td>{{slice.label}}</td>
-                                    <td v-bind:style="{backgroundColor: slice.color}">{{slice.color}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-        <!--div class="expansion-panel">
-            <section>
-                <div class="exp-panel-container">
-                    <div class="exp-panel-item" id="item1">
-    
-                        <a class="exp-panel-item-header" href="#item1">Elementos agregados
-                            <ion-icon name="caret-down-outline"></ion-icon>
-                            <ion-icon name="caret-up-outline"></ion-icon>
-                        </a>
-                        
-                        <div class="exp-panel-item-body">
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime cum labore, molestias ea sit debitis perferendis natus nobis vero necessitatibus vel a consequuntur. Ex molestiae saepe illo libero distinctio maiores?
-                            </p>
-                        </div>
-                    </div>
-    
-                    <div class="exp-panel-item" id="item2">
-    
-                        <a class="exp-panel-item-header" href="#item2">Elementos agregados
-                            <ion-icon name="caret-down-outline"></ion-icon>
-                            <ion-icon name="caret-up-outline"></ion-icon>
-                        </a>
-                        
-                        <div class="exp-panel-item-body">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime cum labore, molestias ea sit debitis perferendis natus nobis vero necessitatibus vel a consequuntur. Ex molestiae saepe illo libero distinctio maiores?
-                        </div>
-                    </div>
-                    
-                </div>
-            </section>
-        </div!-->
-        
-    
-
-        <div class="table-container">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Etiqueta</th>
-                        <th>Color</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="slice in slices">
-                        <td>{{slice.label}}</td>
-                        <td v-bind:style="{backgroundColor: slice.color}">{{slice.color}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <hr>
 
         <div id="mainbox" class="mainbox">
             <div id="circle" class="circle">
-                <slice
+
+                <slice 
+                    v-for="slice in slices"
+                    v-bind:label = "slice.label"
+                    v-bind:angle = "slice.angle"
+                    v-bind:rotation = "slice.rotation"
+                    v-bind:color = "slice.color"></slice>
+
+
+                <!--slice
                     v-bind:label="'Etiqueta 1'"
                     v-bind:turn="'0'"
                     v-bind:color="'#6600ff'"></slice>
 
                 <slice
                     v-bind:label="'Etiqueta 2'"
-                    v-bind:turn="'45'"
+                    v-bind:angle="'45'"
                     v-bind:color="'green'"></slice>
 
                 <slice
                     v-bind:label="'Etiqueta 2'"
-                    v-bind:turn="'90'"
+                    v-bind:angle="'90'"
                     v-bind:color="'indigo'"></slice>
 
                 <slice
                     v-bind:label="'Etiqueta 2'"
-                    v-bind:turn="'135'"
+                    v-bind:angle="'135'"
                     v-bind:color="'black'"></slice>
 
                 <slice
                     v-bind:label="'Etiqueta 2'"
-                    v-bind:turn="'180'"
+                    v-bind:angle="'180'"
                     v-bind:color="'green'"></slice>
 
                 <slice
                     v-bind:label="'Etiqueta 2'"
-                    v-bind:turn="'225'"
+                    v-bind:angle="'225'"
                     v-bind:color="'yellow'"></slice>
 
                 <slice
                     v-bind:label="'Etiqueta 2'"
-                    v-bind:turn="'270'"
+                    v-bind:angle="'270'"
                     v-bind:color="'indigo'"></slice>
 
                 <slice
                     v-bind:label="'Etiqueta 2'"
-                    v-bind:turn="'315'"
-                    v-bind:color="'black'"></slice>
+                    v-bind:angle="'315'"
+                    v-bind:color="'black'"></slice-->
     
                 <!--
                 <div class="slice-box">
@@ -220,12 +146,8 @@
             <button class="button-spin" v-on:click="girar">SPIN</button>
         </div>
 
-        
     </div>
 </body>
 
-
-
-<script src="components/slice.js"></script>
 <script src="index.js"></script>
 </html>
