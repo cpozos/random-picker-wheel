@@ -26,7 +26,6 @@ const app = new Vue({
             var angle = this.getAngle();
 
             if(this.slices){
-
                 for (let i = 0; i < this.slices.length; i++) {
                     const slice = this.slices[i];
                     slice.angle = angle;
