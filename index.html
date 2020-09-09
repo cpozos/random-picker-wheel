@@ -22,33 +22,24 @@
 
         <div class="div-expansion-panel-container">
             <expansion-panel-section label="Tabla de elementos">
-                <div class="table-container">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Etiqueta</th>
-                                <th>Color</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="slice in slices">
-                                <td>{{slice.label}}</td>
-                                <td v-bind:style="{backgroundColor: slice.color}">{{slice.color}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div>
+                    <input type="text" v-model:label="newSlice.label">
+                    <button v-on:click="addSlice">Agregar etiqueta</button>
+                    <button v-show="slices.length > 0" v-on:click="deleteSlices">Borrar todas</button>
                 </div>
-                <button v-show="slices.length > 0" v-on:click="deleteSlices">Borrar todas</button>
+
+                <div style="overflow-y: auto; max-height: 8rem;">
+                    <ul>
+                        <li v-for="(slice, index) in slices">
+                            <label>{{slice.label}}</label>
+                            <button v-on:click="deleteSlice(index)">X</button>
+                        </li>
+                    </ul>
+                </div>
+
+                
             </expansion-panel-section>
-        </div>
-
-        <hr/>
-
-        <div>
-            <input type="text" v-model:label="newSlice.label">
-            <input type="text" v-model:color="newSlice.color">
-            <button v-on:click="addSlice">Agregar etiqueta</button>
-        </div>
+        </div>       
 
         <hr>
 

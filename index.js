@@ -23,19 +23,8 @@ const app = new Vue({
         addSlice: function(){
 
             // Angle
-            var angle = this.getAngle();
-
-            if(this.slices){
-                for (let i = 0; i < this.slices.length; i++) {
-                    const slice = this.slices[i];
-                    slice.angle = angle;
-                    slice.rotation = angle * (i+1);
-                }
-            }
+            this.updateSlices(this.getAngle());
             
-            this.newSlice.angle = angle;
-            this.newSlice.rotation = angle * (this.slices.length + 1);
-
             // Add new slice
             this.slices.push(this.newSlice);
             
@@ -47,11 +36,44 @@ const app = new Vue({
             this.slices = [];
         },
 
+        deleteSlice: function(index){
+            this.slices.splice(index,1);
+            this.updateSlices(this.getAngle());
+        },
+
+        updateSlices: function(newAngle){
+            if(this.slices){
+                for (let i = 0; i < this.slices.length; i++) {
+                    const slice = this.slices[i];
+                    slice.angle = newAngle;
+                    slice.rotation = newAngle * (i+1);
+                }
+            }
+
+            if(this.newSlice.label){
+                this.newSlice.color = this.getRandomColor();
+                this.newSlice.angle = newAngle;
+                this.newSlice.rotation = newAngle * (this.slices.length+1);
+            }
+
+            
+        },
+
         getAngle: function(){
             var numberSlices = this.slices.length + 1;
             var angle = 2 * Math.PI / numberSlices;
             return angle;
+        },
+
+        getRandomColor: function() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+              color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
         }
+
     },
 });
 
