@@ -23,7 +23,8 @@ const app = new Vue({
         addSlice: function(){
 
             // Angle
-            this.updateSlices(this.getAngle());
+            var newAngle = this.getAngle(this.slices.length+1);
+            this.updateSlices(newAngle);
             
             // Add new slice
             this.slices.push(this.newSlice);
@@ -38,31 +39,27 @@ const app = new Vue({
 
         deleteSlice: function(index){
             this.slices.splice(index,1);
-            this.updateSlices(this.getAngle());
+            var newAngle = this.getAngle(this.slices.length);
+            this.updateSlices(newAngle);
         },
 
         updateSlices: function(newAngle){
-            if(this.slices){
-                for (let i = 0; i < this.slices.length; i++) {
-                    const slice = this.slices[i];
-                    slice.angle = newAngle;
-                    slice.rotation = newAngle * (i+1);
-                }
-            }
 
+            for (let i = 0; i < this.slices.length; i++) {
+                const slice = this.slices[i];
+                slice.angle = newAngle;
+                slice.rotation = newAngle * (i+1);
+            }
+            
             if(this.newSlice.label){
                 this.newSlice.color = this.getRandomColor();
                 this.newSlice.angle = newAngle;
                 this.newSlice.rotation = newAngle * (this.slices.length+1);
             }
-
-            
         },
 
-        getAngle: function(){
-            var numberSlices = this.slices.length + 1;
-            var angle = 2 * Math.PI / numberSlices;
-            return angle;
+        getAngle: function(numSlices){
+                return 2 * Math.PI / numSlices;
         },
 
         getRandomColor: function() {

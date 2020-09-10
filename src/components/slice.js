@@ -4,7 +4,7 @@ Vue.component('slice',{
     `
         <div class="slice-box" :style="sliceBoxStyle">
             <span class="slice" v-bind:style="sliceStyle">
-                <b>{{label}}</b>
+                <b v-bind:style="labelStyle">{{label}}</b>
             </span>
         </div>
     `,
@@ -22,19 +22,45 @@ Vue.component('slice',{
             }
         },
         sliceStyle: function(){
-
             var style = {
-                background: this.color,
-                'clip-path': 'polygon('+ this.generatePoints() + ')'
+                background: this.color
+            };
+
+            if(this.angle > Math.PI){
+                style['clip-path'] = ''
+            }
+            else if (this.angle < Math.PI){
+                style['clip-path'] = this.generatePolygon();
+            }
+            else{
+                style['clip-path'] = 'circle(50% at 100% 50%)'
+                style['transform'] = 'translate(-50%,0)';
             }
 
             return style;
-        }
+        },
+
+        labelStyle: function(){
+            var style = {
+                transform: ''
+            };
+
+            if(this.angle != Math.PI){
+                style.transform = 'translate(5%,-50%)'
+            }
+            else{
+                style.transform = 'translate(125%,-50%)'
+            }
+
+            return style;
+        },
     },
 
     methods: {
-        generatePoints: function() {
 
+        generatePolygon: function(){
+
+            // Base coordinate
             var y = ( 1 - Math.tan(this.angle/2) ) / 2;
 
             // Point 1
@@ -43,10 +69,8 @@ Vue.component('slice',{
             // Point 2
             var x_p2 = 100 - y*100;
 
-            return '50% 50%, 0% ' + x_p1.toString() + '%, 0% ' + x_p2.toString() + '%';
-
-            return points;
-        }
+            return `polygon(50% 50%, 0% ${x_p1.toString()}%, 0% ${x_p2.toString()}%)`
+        },
     },
 
 });
